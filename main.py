@@ -49,7 +49,7 @@ colores = [color1,color2,color3,color4]"""
 # Cargo la config
 diccionario = load_data()
 print(diccionario)
-dto = diccionario[1]
+dto = diccionario[2]
 
 
 #particle = Particle(cantidad, x1, x2, y1, y2, vx1, vx2, vy1, vy2, life1, life2, friccion, gravedad, rebote, move_x1, move_x2, move_y1, move_y2, spin1, spin2, velocidad, imagen, repeat, colores, screen)

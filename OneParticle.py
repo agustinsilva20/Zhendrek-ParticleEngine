@@ -72,12 +72,14 @@ class OneParticle(pygame.sprite.Sprite):
         self.repeat = repeat
 
         # Imagen
-        self.image = imagenes[0]
+        self.imagenes = imagenes
+        """self.image = imagenes[0]
         self.rect = self.image.get_rect()
+        self.image.set_alpha(200)"""
 
-        # Configuracion para el giro
+        """# Configuracion para el giro
         self.imagen_pintada = self.image.copy()
-        self.offset = Vector2(0, 0)
+        self.offset = Vector2(0, 0)"""
         self.start_loop()
     
     def start_loop(self):
@@ -100,7 +102,16 @@ class OneParticle(pygame.sprite.Sprite):
         self.last_tick = self.tiempo_inicio
 
         # Agarro la imagen
-        #self.image = image
+        rand_img = random.randint(0,len(self.imagenes)-1)
+        self.image = self.imagenes[rand_img]
+        self.rect = self.image.get_rect()
+        self.image.set_alpha(200)
+
+        # Configuracion para el giro
+        self.imagen_pintada = self.image.copy()
+        self.offset = Vector2(0, 0)
+
+
 
     
     def update(self):
@@ -168,7 +179,7 @@ class OneParticle(pygame.sprite.Sprite):
         print(self.angulo)
         offset_rotated = self.offset.rotate(self.angulo) #new
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
-        self.image.set_alpha(140)
+        #self.image.set_alpha(140)
         self.image.set_colorkey((0, 0, 0))
     
     def draw(self):

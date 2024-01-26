@@ -28,19 +28,12 @@ class Particle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         imagenes = []
-        for i in range(0, len(dto["imagenes"])):
-            path = dto["imagenes"][i]
-            recorte = dto["recortar_imagen"][i]
-            grafico = pygame.image.load(f'./{path}').convert_alpha()
-            grafico = grafico.subsurface(pygame.Rect(recorte[0],recorte[1],recorte[2],recorte[3]))
+        for elem in dto["particles"]:
+            grafico = elem.copy()
             grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
             self.imagen_pintada = self.set_color(grafico)
             grafico = self.imagen_pintada.copy()
-
-
-            #grafico = self.convert_blended_image(path,recorte[0],recorte[1],recorte[2],recorte[3])
-            #grafico = grafico.subsurface(pygame.Rect(recorte[0],recorte[1],recorte[2],recorte[3]))
 
             imagenes.append(grafico)
 

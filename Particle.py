@@ -27,31 +27,17 @@ class Particle(pygame.sprite.Sprite):
         self.image.fill((255, 0, 0))
         self.rect = self.image.get_rect()
 
-        """# Imagen
-        grafico = pygame.image.load('./10090.bmp').convert_alpha()
-        grafico = grafico.subsurface(pygame.Rect(480,0,32,32))
-        grafico.set_colorkey((0, 0, 0))
-        
-
-        # Asigno el color
-        self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
-        self.imagen_pintada = self.set_color(grafico)
-        grafico = self.imagen_pintada.copy()
-        #grafico.set_alpha(150)
-        imagenes = []
-        imagenes.append(grafico)"""
-
         imagenes = []
         for i in range(0, len(dto["imagenes"])):
             path = dto["imagenes"][i]
             recorte = dto["recortar_imagen"][i]
             grafico = pygame.image.load(f'./{path}').convert_alpha()
             grafico = grafico.subsurface(pygame.Rect(recorte[0],recorte[1],recorte[2],recorte[3]))
-            
-            #grafico.set_colorkey((0, 0, 0))
+            grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
             self.imagen_pintada = self.set_color(grafico)
             grafico = self.imagen_pintada.copy()
+
 
             #grafico = self.convert_blended_image(path,recorte[0],recorte[1],recorte[2],recorte[3])
             #grafico = grafico.subsurface(pygame.Rect(recorte[0],recorte[1],recorte[2],recorte[3]))
@@ -88,47 +74,6 @@ class Particle(pygame.sprite.Sprite):
         for elem in self.particulas:
             elem.draw()
     
-    def set_color_xd(self, imagen):
-        color_left_bottom=self.colores[0]
-        color_left_top=self.colores[1]
-        color_right_bottom=self.colores[2]
-        color_right_top=self.colores[3]
-
-        # Crear una nueva superficie para la imagen con el mismo tamaño
-        imagen_pintada = pygame.Surface(imagen.get_size(), pygame.SRCALPHA)
-        imagen_pintada.blit(imagen, (0, 0))
-
-        #Calculo los cuadrantes
-        self.width = imagen.get_width()
-        self.height = imagen.get_height()
-        rect1 = pygame.Rect(0, 0, self.width // 2, self.height // 2)
-        rect2 = pygame.Rect(self.width // 2, 0, self.width // 2, self.height // 2)
-        rect3 = pygame.Rect(0, self.height // 2, self.width // 2, self.height // 2)
-        rect4 = pygame.Rect(self.width // 2, self.height // 2, self.width // 2, self.height // 2)
-        
-        # Pinto por cuadrantes
-        imagen_pintada.fill(color_left_bottom, rect = rect1, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(color_left_top, rect = rect2 , special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(color_right_bottom, rect = rect3, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(color_right_top, rect = rect4, special_flags=pygame.BLEND_RGBA_MULT)
-
-        return imagen_pintada
-    
-    def set_color_stack(self, imagen):
-        color = pygame.Color(255, 124, 0)
-
-        #Creo una superficie para la imagen coloreada
-        colored_image = pygame.Surface(imagen.get_size())
-        colored_image.fill(color)
-
-        # Hago una copia de la imagen origina
-        final_image = imagen.copy()
-
-        # Pinto la imagen
-        final_image.blit(colored_image, (0, 0), special_flags = pygame.BLEND_MULT)
-        final_image.set_alpha(100)
-
-        return final_image
 
     def set_color_one(self, imagen):
         """
@@ -179,7 +124,7 @@ class Particle(pygame.sprite.Sprite):
         return imagen_pintada
 
 
-    def fondo_alpha(self, path):
+    """def fondo_alpha(self, path):
         # Cargar la imagen con fondo negro
         image_with_black_background = pygame.image.load(f'./{path}').convert_alpha()
         width = image_with_black_background.get_width()
@@ -189,7 +134,7 @@ class Particle(pygame.sprite.Sprite):
         sprite_surface = pygame.Surface((width, height), pygame.SRCALPHA)
         sprite_surface.blit(new_background, (0, 0))
         sprite_surface.blit(image_with_black_background, (0, 0))
-        return sprite_surface
+        return sprite_surface"""
 
     """def convert_blended_image(self,image_path,cut1,cut2,cut3,cut4):
         image = pygame.image.load(image_path).convert_alpha()
@@ -201,15 +146,15 @@ class Particle(pygame.sprite.Sprite):
         for x in range(rect.w):
             for y in range(rect.h):
                 pos = x, y
-                color = pygame.Color(255, 255, 255)  # Corregir esta línea
+                color = pygame.Color(255, 0, 0)  # Corregir esta línea
                 icolor = image.get_at(pos)
                 r, g, b = icolor.r, icolor.g, icolor.b
                 color.a = int((r + g + b) // 3)
             
                 new_image.set_at(pos, color)
 
-        return new_image
-"""
+        return new_image"""
+
     
 
 

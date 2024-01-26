@@ -119,8 +119,6 @@ class OneParticle(pygame.sprite.Sprite):
             self.rotate()
 
 
-        #self.image.set_alpha(180)
-
         
 
 
@@ -189,31 +187,9 @@ class OneParticle(pygame.sprite.Sprite):
         self.image = pygame.transform.rotozoom(self.imagen_pintada, -self.angulo, 1)
         offset_rotated = self.offset.rotate(self.angulo) #new
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
-        #self.image.set_alpha(140)
         self.image.set_colorkey((0, 0, 0))
 
 
-   
-    
-    """def rotate(self):
-        self.angulo += 1
-
-        # Guardar la posición antes de la rotación
-        old_rect_center = self.rect.center
-
-        # Rotar la imagen
-        self.image = pygame.transform.rotate(self.imagen_pintada, -self.angulo)
-
-        # Calcular el offset_rotated relativo al centro antes de la rotación
-        offset_rotated = pygame.Vector2(self.offset).rotate(-self.angulo)
-
-        # Calcular la nueva posición del rectángulo
-        self.rect = self.image.get_rect()
-
-        # Ajustar la posición para compensar el cambio en el centro
-        self.rect.center = old_rect_center + offset_rotated
-
-        self.image.set_alpha(140)"""
         
 
     

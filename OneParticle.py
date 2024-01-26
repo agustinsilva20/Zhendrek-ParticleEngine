@@ -105,7 +105,9 @@ class OneParticle(pygame.sprite.Sprite):
         rand_img = random.randint(0,len(self.imagenes)-1)
         self.image = self.imagenes[rand_img]
         self.rect = self.image.get_rect()
-        self.image.set_alpha(200)
+        self.rect.x = self.particula_padre.rect.x + self.x
+        self.rect.y = self.particula_padre.rect.y + self.y
+        #self.image.set_alpha(180)
 
         # Configuracion para el giro
         self.imagen_pintada = self.image.copy()
@@ -152,8 +154,6 @@ class OneParticle(pygame.sprite.Sprite):
         self.x = self.x + (self.vector_x/self.friccion)
         self.y = self.y + (self.vector_y/self.friccion)
 
-        print(f"vector_x: {self.vector_x}, {self.friccion}")
-
         # Descuento el tiempo de vida
         self.duracion = self.duracion - delta
 
@@ -176,14 +176,13 @@ class OneParticle(pygame.sprite.Sprite):
 
     def rotate(self):
         self.image = pygame.transform.rotozoom(self.imagen_pintada, -self.angulo, 1)
-        print(self.angulo)
         offset_rotated = self.offset.rotate(self.angulo) #new
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
         #self.image.set_alpha(140)
         self.image.set_colorkey((0, 0, 0))
     
     def draw(self):
-        self.screen.blit(self.image, (self.rect.x, self.rect.y))
+        self.screen.blit(self.image, (self.rect.x, self.rect.y), special_flags=pygame.BLEND_RGBA_ADD)
         
 
 

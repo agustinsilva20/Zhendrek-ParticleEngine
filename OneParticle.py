@@ -73,13 +73,7 @@ class OneParticle(pygame.sprite.Sprite):
 
         # Imagen
         self.imagenes = imagenes
-        """self.image = imagenes[0]
-        self.rect = self.image.get_rect()
-        self.image.set_alpha(200)"""
 
-        """# Configuracion para el giro
-        self.imagen_pintada = self.image.copy()
-        self.offset = Vector2(0, 0)"""
         self.start_loop()
     
     def start_loop(self):
@@ -89,6 +83,10 @@ class OneParticle(pygame.sprite.Sprite):
 
         # Calculo la duracion de la particula
         self.duracion = random.randint(self.life1, self.life2)
+        if self.duracion <=-1:
+            self.infinito = True
+        else:
+            self.infinito = False
 
         # Configuro la direccion inicial de la particula
         self.vector_x = random.randint(self.vx1, self.vx2)
@@ -104,14 +102,26 @@ class OneParticle(pygame.sprite.Sprite):
         # Agarro la imagen
         rand_img = random.randint(0,len(self.imagenes)-1)
         self.image = self.imagenes[rand_img]
-        self.rect = self.image.get_rect()
-        self.rect.x = self.particula_padre.rect.x + self.x
-        self.rect.y = self.particula_padre.rect.y + self.y
-        #self.image.set_alpha(180)
 
         # Configuracion para el giro
         self.imagen_pintada = self.image.copy()
         self.offset = Vector2(0, 0)
+
+        self.rect = self.image.get_rect()
+        self.rect.x = self.particula_padre.rect.x + self.x
+        self.rect.y = self.particula_padre.rect.y + self.y
+
+        # Aplico el giro
+        if self.isSpinning:
+            random_angle = random.randint(self.spin1, self.spin2)
+            self.angulo = self.angulo + (random_angle)
+            # HAGO GIRAR LA FOTO
+            self.rotate()
+
+
+        #self.image.set_alpha(180)
+
+        
 
 
 
@@ -131,15 +141,6 @@ class OneParticle(pygame.sprite.Sprite):
         # Reboto en caso de llegar al suelo
         if self.y == 0:
             self.vector_y = - self.rebote
-        
-        # Aplico el giro
-        if self.isSpinning:
-            random_angle = random.randint(self.spin1, self.spin2)
-            self.angulo = self.angulo + (random_angle)
-            if self.angulo > 360:
-                self.angulo = 0
-            # HAGO GIRAR LA FOTO
-            self.rotate()
         
         # Aplico movimiento
         if self.isMoving_x:
@@ -164,13 +165,23 @@ class OneParticle(pygame.sprite.Sprite):
         self.rect.x = self.particula_padre.rect.x + self.x
         self.rect.y = self.particula_padre.rect.y + self.y
 
+        # Aplico el giro
+        if self.isSpinning:
+            random_angle = random.randint(self.spin1, self.spin2)
+            self.angulo = self.angulo + (random_angle)
+            if self.angulo > 360:
+                self.angulo = 0
+            # HAGO GIRAR LA FOTO
+            self.rotate()
+
         # Analizo que hacer con la particula
         if self.duracion <= 0:
-            if self.repeat:
-                # Reinicio la particula
-                self.start_loop()
-            else:
-                self.kill()
+            if not self.infinito:
+                if self.repeat:
+                    # Reinicio la particula
+                    self.start_loop()
+                else:
+                    self.kill()
             
     
 
@@ -180,6 +191,31 @@ class OneParticle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
         #self.image.set_alpha(140)
         self.image.set_colorkey((0, 0, 0))
+
+
+   
+    
+    """def rotate(self):
+        self.angulo += 1
+
+        # Guardar la posición antes de la rotación
+        old_rect_center = self.rect.center
+
+        # Rotar la imagen
+        self.image = pygame.transform.rotate(self.imagen_pintada, -self.angulo)
+
+        # Calcular el offset_rotated relativo al centro antes de la rotación
+        offset_rotated = pygame.Vector2(self.offset).rotate(-self.angulo)
+
+        # Calcular la nueva posición del rectángulo
+        self.rect = self.image.get_rect()
+
+        # Ajustar la posición para compensar el cambio en el centro
+        self.rect.center = old_rect_center + offset_rotated
+
+        self.image.set_alpha(140)"""
+        
+
     
     def draw(self):
         self.screen.blit(self.image, (self.rect.x, self.rect.y), special_flags=pygame.BLEND_RGBA_ADD)

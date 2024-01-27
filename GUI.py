@@ -1,15 +1,126 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Lista de elementos para el cuadro de selección
-elementos = ['Elemento1', 'Elemento2', 'Elemento3','Elemento1']
+
+def escribir_textbox(objeto, inputs):
+    entry = inputs["entry_cantidad"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["cantidad"])
+
+    entry = inputs["entry_x1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["x1"])
+
+    entry = inputs["entry_x2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["x2"])
+
+    entry = inputs["entry_y1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["y1"])
+
+    entry = inputs["entry_y2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["y2"])
+
+    entry = inputs["entry_vx1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["vx1"])
+
+    entry = inputs["entry_vx2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["vx2"])
+
+    entry = inputs["entry_vy1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["vy1"])
+
+    entry = inputs["entry_vy2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["vy2"])
+
+
+    entry = inputs["entry_life1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["life1"])
+
+    entry = inputs["entry_life2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["life2"])
+
+    entry = inputs["entry_friccion"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["friccion"])
+
+    entry = inputs["entry_gravedad"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["gravedad"])
+
+    entry = inputs["entry_rebote"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["rebote"])
+
+    entry = inputs["entry_movex1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["move_x1"])
+
+    entry = inputs["entry_movex2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["move_x2"])
+
+    entry = inputs["entry_movey1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["move_y1"])
+
+    entry = inputs["entry_movey2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["move_y2"])
+
+    entry = inputs["entry_spin1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["spin1"])
+
+    entry = inputs["entry_spin2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["spin2"])
+
+    entry = inputs["entry_velocidad"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["velocidad"])
+
+    entry = inputs["entry_imagenes"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["imagenes"])
+
+    entry = inputs["entry_repeat"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["repeat"])
+
+    entry = inputs["entry_color1"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["color1"])
+
+    entry = inputs["entry_color2"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["color2"])
+
+    entry = inputs["entry_color3"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["color3"])
+
+    entry = inputs["entry_color4"]
+    entry.delete(0, tk.END)
+    entry.insert(0, objeto["color4"])
+
+    print(objeto)
 
 # Función para manejar el evento de selección del cuadro de selección
-def seleccionar_elemento(event, combo, elementos, diccionario):
+def seleccionar_elemento(event, combo, elementos, diccionario, inputs):
     selected_element = combo.get()
     index = elementos.index(selected_element)
     objeto = diccionario[index+1]
-    print(objeto)
+    escribir_textbox(objeto, inputs)
+    
     # Puedes realizar acciones según la selección
 
 def bucle_tkinter(diccionario, player):
@@ -22,13 +133,6 @@ def bucle_tkinter(diccionario, player):
     for elem in diccionario:
         nombre = diccionario[elem]["nombre"]
         elementos.append(nombre)
-
-
-    # Crear el cuadro de selección
-    label_select = tk.Label(root, text="Selecciona un elemento:")
-    combo = ttk.Combobox(root, values=elementos)
-    combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo, elementos, diccionario))
-
 
     # Crear etiquetas y cuadros de texto para los campos
     label_cantidad = tk.Label(root, text="Cantidad:")
@@ -111,6 +215,45 @@ def bucle_tkinter(diccionario, player):
 
     label_color4= tk.Label(root, text="color4:")
     entry_color4 = tk.Entry(root)
+
+    # Inputs
+    inputs = {}
+    inputs["entry_cantidad"] = entry_cantidad
+    inputs["entry_x1"] = entry_x1
+    inputs["entry_x2"] = entry_x2
+    inputs["entry_y1"] = entry_y1
+    inputs["entry_y2"] = entry_y2
+    inputs["entry_vx1"] = entry_vx1
+    inputs["entry_vx2"] = entry_vx2
+    inputs["entry_vy1"] = entry_vy1
+    inputs["entry_vy2"] = entry_vy2
+    inputs["entry_life1"] = entry_life1
+    inputs["entry_life2"] = entry_life2
+    inputs["entry_friccion"] = entry_friccion
+    inputs["entry_gravedad"] = entry_gravedad
+    inputs["entry_rebote"] = entry_rebote
+    inputs["entry_movex1"] = entry_movex1
+    inputs["entry_movex2"] = entry_movex2
+    inputs["entry_movey1"] = entry_movey1
+    inputs["entry_movey2"] = entry_movey2
+    inputs["entry_spin1"] = entry_spin1
+    inputs["entry_spin2"] = entry_spin2
+    inputs["entry_velocidad"] = entry_velocidad
+    inputs["entry_imagenes"] = entry_imagenes
+    inputs["entry_repeat"] = entry_repeat
+    inputs["entry_color1"] = entry_color1
+    inputs["entry_color2"] = entry_color2
+    inputs["entry_color3"] = entry_color3
+    inputs["entry_color4"] = entry_color4
+    
+    
+
+
+    # Crear el cuadro de selección
+    label_select = tk.Label(root, text="Selecciona un elemento:")
+    combo = ttk.Combobox(root, values=elementos)
+    combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo, elementos, diccionario, inputs))
+
 
 
 

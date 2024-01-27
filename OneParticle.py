@@ -85,7 +85,9 @@ class OneParticle(pygame.sprite.Sprite):
         self.duracion = random.randint(self.life1, self.life2)
         if self.duracion <=-1:
             self.infinito = True
+            self.duracion = 900
         else:
+            
             self.infinito = False
 
         # Configuro la direccion inicial de la particula
@@ -102,6 +104,7 @@ class OneParticle(pygame.sprite.Sprite):
         # Agarro la imagen
         rand_img = random.randint(0,len(self.imagenes)-1)
         self.image = self.imagenes[rand_img]
+        print(len(self.imagenes))
 
         # Configuracion para el giro
         self.imagen_pintada = self.image.copy()
@@ -117,6 +120,8 @@ class OneParticle(pygame.sprite.Sprite):
             self.angulo = self.angulo + (random_angle)
             # HAGO GIRAR LA FOTO
             self.rotate()
+        
+        print("D")
 
 
         
@@ -174,11 +179,12 @@ class OneParticle(pygame.sprite.Sprite):
 
         # Analizo que hacer con la particula
         if self.duracion <= 0:
-            if not self.infinito:
-                if self.repeat:
+                # ARREGLAR SI UN PARAM ES -1 ENTONCES EN INFINITA, EL SEGUNDO PARAM INDICA LA DURACION DE LA PARTICULA
+                if self.repeat or self.infinito:
                     # Reinicio la particula
                     self.start_loop()
                 else:
+                    print("Killed")
                     self.kill()
             
     

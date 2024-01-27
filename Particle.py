@@ -29,6 +29,7 @@ class Particle(pygame.sprite.Sprite):
 
         imagenes = []
         for elem in dto["particles"]:
+            print(elem)
             grafico = elem.copy()
             grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
@@ -39,15 +40,15 @@ class Particle(pygame.sprite.Sprite):
 
         # Creo las particulas
         self.particulas = []
-        for i in range(0, dto["cantidad"]):
+        for i in range(0, int(dto["cantidad"])):
             # Creo una nueva particula
-            nueva_particula = OneParticle(dto["x1"], dto["x2"], dto["y1"], dto["y2"],
-                 dto["vx1"], dto["vx2"], dto["vy1"], dto["vy2"],
-                 dto["life1"], dto["life2"],
-                 dto["friccion"], dto["gravedad"], dto["rebote"],
-                 dto["move_x1"], dto["move_x2"], dto["move_y1"], dto["move_y2"],
-                 dto["spin1"], dto["spin2"],
-                 dto["velocidad"],
+            nueva_particula = OneParticle(int(dto["x1"]), int(dto["x2"]), int(dto["y1"]), int(dto["y2"]),
+                 int(dto["vx1"]), int(dto["vx2"]), int(dto["vy1"]), int(dto["vy2"]),
+                 int(dto["life1"]), int(dto["life2"]),
+                 int(dto["friccion"]), int(dto["gravedad"]), int(dto["rebote"]),
+                 int(dto["move_x1"]), int(dto["move_x2"]), int(dto["move_y1"]), int(dto["move_y2"]),
+                 int(dto["spin1"]), int(dto["spin2"]),
+                 int(dto["velocidad"]),
                  imagenes,
                  dto["repeat"],
                   self,
@@ -56,7 +57,7 @@ class Particle(pygame.sprite.Sprite):
             self.particulas.append(nueva_particula)
         
         # Duraicon de las particulas
-        self.duracion = max(dto["life1"], dto["life2"])
+        self.duracion = max(int(dto["life1"]), int(dto["life2"]))
 
         if self.duracion <=-1:
             self.infinito = True

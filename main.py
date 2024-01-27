@@ -29,7 +29,11 @@ dto = diccionario[7]
 
 class Player:
     def __init__(self) -> None:
-        self.particle = Particle(dto, screen, self)
+        self.particle = None
+    
+    def crear_particula(self, objeto):
+        self.particle = None
+        self.particle = Particle(objeto, screen, self)
 
 player = Player()
 

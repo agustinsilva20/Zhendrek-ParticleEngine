@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
+import json
+from Spritesheet import Spritesheet
 
-def crear_particula(inputs):
+def crear_particula(inputs, player):
     cantidad = inputs["entry_cantidad"].get()
     x1 = inputs["entry_x1"].get()
     x2 = inputs["entry_x2"].get()
@@ -28,6 +30,57 @@ def crear_particula(inputs):
     color2 = inputs["entry_color2"].get()
     color3 = inputs["entry_color3"].get()
     color4 = inputs["entry_color4"].get()
+
+    if repeat == 1 or repeat == "1":
+        repeat = True
+    else:
+        repeat = False
+
+    imagenes = imagenes.split(" ")
+    imagenes = load_particles(imagenes)
+    color1 = color1.split(" ")
+    color2 = color2.split(" ")
+    color3 = color3.split(" ")
+    color4 = color4.split(" ")
+
+    color1 = [int(x) for x in color1]
+    color2= [int(x) for x in color2]
+    color3 = [int(x) for x in color3]
+    color4 = [int(x) for x in color4]
+
+
+    objeto = {"id":1,
+        "nombre": "",
+        "cantidad" : cantidad,
+        "x1" : x1,
+        "x2" : x2,
+        "y1" : y1,
+        "y2" : y2,
+        "vx1" : vx1,
+        "vx2" : vx2,
+        "vy1" : vy1,
+        "vy2" : vy2,
+        "life1" : life1,
+        "life2" : life2,
+        "friccion" : friccion,
+        "gravedad" :gravedad,
+        "rebote" : rebote,
+        "move_x1" : move_x1,
+        "move_x2" : move_x2,
+        "move_y1" : move_y1,
+        "move_y2" : move_y2,
+        "spin1" : spin1,
+        "spin2" : spin2,
+        "velocidad": 15,
+        "particles" : imagenes,
+        "repeat" : repeat,
+        "color1" : color1,
+        "color2" : color2,
+        "color3": color3,
+        "color4" : color4           
+        }
+    
+    player.crear_particula(objeto)
 
 
 
@@ -285,7 +338,7 @@ def bucle_tkinter(diccionario, player):
     combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo, elementos, diccionario, inputs))
 
 
-    boton = tk.Button(root, text="Visualizar", command=lambda:crear_particula(inputs))
+    boton = tk.Button(root, text="Visualizar", command=lambda:crear_particula(inputs, player))
 
     # Posicionar elementos en la ventana
     label_select.grid(row=0, column=0, pady=10)
@@ -375,7 +428,36 @@ def bucle_tkinter(diccionario, player):
     boton.grid(row = 14, column=3, pady=5)
 
 
-    # ... Repite para otros campos
-
     # Ejecutar el bucle principal de Tkinter
     root.mainloop()
+
+
+def load_particles(imagenes):
+
+    # Abro los sprite sheets
+    spritesheets = {}
+
+    with open("./Recursos/Particulas/images_index.json", 'r') as archivo:
+        datos_json = json.load(archivo)
+        for elem in datos_json:
+            spritesheets[int(elem["id"])] = Spritesheet(elem["file"])
+    
+    # Realizo los recortes de cada sprite
+    particulas_img = {}
+    with open("./Recursos/Particulas/particle_assets.json", 'r') as archivo:
+        datos_json = json.load(archivo)
+        for elem in datos_json:
+            # Obtengo el sprite sheet correspondiente
+            spritesheet = spritesheets[int(elem["file"])]
+            # Obtengo el recorte
+            grafico = spritesheet.get_sprite(int(elem["x"]), int(elem["y"]), int(elem["width"]), int(elem["height"]))
+            # Almaceno el recorte
+            particulas_img[int(elem["id"])] = grafico
+
+   
+        particles = []
+        for elem in imagenes:
+            particles.append(particulas_img[int(elem)])
+ 
+
+    return particles

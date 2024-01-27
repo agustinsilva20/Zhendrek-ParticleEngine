@@ -104,7 +104,7 @@ class OneParticle(pygame.sprite.Sprite):
         # Agarro la imagen
         rand_img = random.randint(0,len(self.imagenes)-1)
         self.image = self.imagenes[rand_img]
-        print(len(self.imagenes))
+       
 
         # Configuracion para el giro
         self.imagen_pintada = self.image.copy()
@@ -120,9 +120,7 @@ class OneParticle(pygame.sprite.Sprite):
             self.angulo = self.angulo + (random_angle)
             # HAGO GIRAR LA FOTO
             self.rotate()
-        
-        print("D")
-
+ 
 
         
 
@@ -184,7 +182,7 @@ class OneParticle(pygame.sprite.Sprite):
                     # Reinicio la particula
                     self.start_loop()
                 else:
-                    print("Killed")
+    
                     self.kill()
             
     

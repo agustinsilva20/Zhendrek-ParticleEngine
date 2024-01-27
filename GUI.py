@@ -5,19 +5,29 @@ from tkinter import ttk
 elementos = ['Elemento1', 'Elemento2', 'Elemento3','Elemento1']
 
 # Función para manejar el evento de selección del cuadro de selección
-def seleccionar_elemento(event, combo):
+def seleccionar_elemento(event, combo, elementos, diccionario):
     selected_element = combo.get()
+    index = elementos.index(selected_element)
+    objeto = diccionario[index+1]
+    print(objeto)
     # Puedes realizar acciones según la selección
 
-def bucle_tkinter():
+def bucle_tkinter(diccionario, player):
     # Crear la ventana principal
     root = tk.Tk()
     root.title("Formulario")
 
+    elementos = []
+    contador = 0
+    for elem in diccionario:
+        nombre = diccionario[elem]["nombre"]
+        elementos.append(nombre)
+
+
     # Crear el cuadro de selección
     label_select = tk.Label(root, text="Selecciona un elemento:")
     combo = ttk.Combobox(root, values=elementos)
-    combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo))
+    combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo, elementos, diccionario))
 
 
     # Crear etiquetas y cuadros de texto para los campos

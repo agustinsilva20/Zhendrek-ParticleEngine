@@ -69,7 +69,7 @@ def bucle_pygame(player):
 
 # Iniciar los hilos
 thread_pygame = Thread(target=bucle_pygame, args=(player,))
-thread_tkinter = Thread(target=bucle_tkinter)
+thread_tkinter = Thread(target=bucle_tkinter, args=(diccionario, player,) )
 
 thread_pygame.start()
 thread_tkinter.start()

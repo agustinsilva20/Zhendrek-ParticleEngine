@@ -91,7 +91,7 @@ class Particle(pygame.sprite.Sprite):
         # Remuevo al player
         self.player.particle = None
         super().kill()
-        print("killed")
+
     
     
     def draw(self):

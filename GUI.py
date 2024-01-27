@@ -1,6 +1,35 @@
 import tkinter as tk
 from tkinter import ttk
 
+def crear_particula(inputs):
+    cantidad = inputs["entry_cantidad"].get()
+    x1 = inputs["entry_x1"].get()
+    x2 = inputs["entry_x2"].get()
+    y1 = inputs["entry_y1"].get()
+    y2 = inputs["entry_y2"].get()
+    vx1 = inputs["entry_vx1"].get()
+    vx2 = inputs["entry_vx2"].get()
+    vy1 = inputs["entry_vy1"].get()
+    vy2 = inputs["entry_vy2"].get()
+    life1 = inputs["entry_life1"].get()
+    life2 = inputs["entry_life2"].get()
+    friccion = inputs["entry_friccion"].get()
+    gravedad = inputs["entry_gravedad"].get()
+    rebote = inputs["entry_rebote"].get()
+    move_x1 = inputs["entry_movex1"].get()
+    move_x2 = inputs["entry_movex2"].get()
+    move_y1 = inputs["entry_movey1"].get()
+    move_y2 = inputs["entry_movey2"].get()
+    spin1 = inputs["entry_spin1"].get()
+    spin2 = inputs["entry_spin2"].get()
+    imagenes = inputs["entry_imagenes"].get()
+    repeat = inputs["entry_repeat"].get()
+    color1 = inputs["entry_color1"].get()
+    color2 = inputs["entry_color2"].get()
+    color3 = inputs["entry_color3"].get()
+    color4 = inputs["entry_color4"].get()
+
+
 
 def escribir_textbox(objeto, inputs):
     entry = inputs["entry_cantidad"]
@@ -112,7 +141,6 @@ def escribir_textbox(objeto, inputs):
     entry.delete(0, tk.END)
     entry.insert(0, objeto["color4"])
 
-    print(objeto)
 
 # Función para manejar el evento de selección del cuadro de selección
 def seleccionar_elemento(event, combo, elementos, diccionario, inputs):
@@ -216,6 +244,8 @@ def bucle_tkinter(diccionario, player):
     label_color4= tk.Label(root, text="color4:")
     entry_color4 = tk.Entry(root)
 
+    
+
     # Inputs
     inputs = {}
     inputs["entry_cantidad"] = entry_cantidad
@@ -255,7 +285,7 @@ def bucle_tkinter(diccionario, player):
     combo.bind('<<ComboboxSelected>>', lambda event: seleccionar_elemento(event, combo, elementos, diccionario, inputs))
 
 
-
+    boton = tk.Button(root, text="Visualizar", command=lambda:crear_particula(inputs))
 
     # Posicionar elementos en la ventana
     label_select.grid(row=0, column=0, pady=10)
@@ -341,6 +371,8 @@ def bucle_tkinter(diccionario, player):
 
     label_color4.grid(row=13, column=2, pady=5)
     entry_color4.grid(row=13, column=3, pady=5)
+
+    boton.grid(row = 14, column=3, pady=5)
 
 
     # ... Repite para otros campos

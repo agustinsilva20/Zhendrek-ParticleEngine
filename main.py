@@ -25,25 +25,36 @@ diccionario = load_particles()
 # Elijo la particula a mostrar
 dto = diccionario[7]
 
-particle = Particle(dto, screen)
+class Player:
+    def __init__(self) -> None:
+        self.particle = Particle(dto, screen, self)
+
 
 # Bucle principal
 clock = pygame.time.Clock()
-
+player = Player()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
+    
+
     # Limpiar la pantalla
     screen.fill(WHITE)
 
-    # Actualizar la partícula
-    particle.update()
+    
 
-    # Dibujo
-    particle.draw()
+    if player.particle:
+        try:
+            # Actualizar la partícula
+            player.particle.update()
+
+            # Dibujo
+            player.particle.draw()
+        except:
+            pass
 
 
     # Actualizar la pantalla

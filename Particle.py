@@ -14,13 +14,13 @@ class Particle(pygame.sprite.Sprite):
                  colores,
                  screen
                  ):"""
-    def __init__(self, dto, screen):
+    def __init__(self, dto, screen, player):
         
         # Creo el objeto de pygame
         super().__init__()
         self._layer = 101
         self.screen = screen
-
+        self.player = player
 
         # Creo el rect
         self.image = pygame.Surface((1, 1))
@@ -54,6 +54,16 @@ class Particle(pygame.sprite.Sprite):
                   screen)
             # Agrego la particula a la lista
             self.particulas.append(nueva_particula)
+        
+        # Duraicon de las particulas
+        self.duracion = max(dto["life1"], dto["life2"])
+
+        if self.duracion <=-1:
+            self.infinito = True
+        else:
+            self.infinito = False
+
+        self.last_tick = pygame.time.get_ticks()
     
     def update(self):
         self.rect.x = 100
@@ -61,6 +71,28 @@ class Particle(pygame.sprite.Sprite):
         for elem in self.particulas:
             elem.update()
         
+        if not self.infinito:
+            time = pygame.time.get_ticks()
+            delta = time - self.last_tick
+            self.last_tick = time
+            self.duracion -= delta
+            if self.duracion <=0:
+                self.kill()
+
+    
+    def kill(self):
+        for elem in self.particulas:
+            try:
+                self.particulas.remove(elem)
+                elem.kill()
+            except:
+                pass
+
+        # Remuevo al player
+        self.player.particle = None
+        super().kill()
+        print("killed")
+    
     
     def draw(self):
         self.screen.blit(self.image, (self.rect.x, self.rect.y))
@@ -116,39 +148,6 @@ class Particle(pygame.sprite.Sprite):
         imagen_pintada.set_colorkey((self.colores[3]))
         return imagen_pintada
 
-
-    """def fondo_alpha(self, path):
-        # Cargar la imagen con fondo negro
-        image_with_black_background = pygame.image.load(f'./{path}').convert_alpha()
-        width = image_with_black_background.get_width()
-        height = image_with_black_background.get_height()
-        new_background = pygame.Surface((width, height), pygame.SRCALPHA)
-        # Crear una nueva superficie para el sprite
-        sprite_surface = pygame.Surface((width, height), pygame.SRCALPHA)
-        sprite_surface.blit(new_background, (0, 0))
-        sprite_surface.blit(image_with_black_background, (0, 0))
-        return sprite_surface"""
-
-    """def convert_blended_image(self,image_path,cut1,cut2,cut3,cut4):
-        image = pygame.image.load(image_path).convert_alpha()
-        image = image.subsurface(pygame.Rect(cut1,cut2,cut3,cut4))
-        rect = image.get_rect()
-        transparent = 0, 0, 0, 0
-        new_image = pygame.Surface(rect.size, pygame.SRCALPHA)
-        new_image.fill(transparent)
-        for x in range(rect.w):
-            for y in range(rect.h):
-                pos = x, y
-                color = pygame.Color(255, 0, 0)  # Corregir esta línea
-                icolor = image.get_at(pos)
-                r, g, b = icolor.r, icolor.g, icolor.b
-                color.a = int((r + g + b) // 3)
-            
-                new_image.set_at(pos, color)
-
-        return new_image"""
-
-    
 
 
         

@@ -1,5 +1,7 @@
 import pygame
 from OneParticle import OneParticle
+
+from Colors import create_overlay
 class Particle(pygame.sprite.Sprite):
     """def __init__(self,cantidad, x1:int, x2:int, y1:int, y2:int,
                  vx1:int, vx2:int, vy1:int, vy2:int,
@@ -33,7 +35,8 @@ class Particle(pygame.sprite.Sprite):
             grafico = elem.copy()
             grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
-            self.imagen_pintada = self.set_color(grafico)
+            #self.imagen_pintada = self.set_color(grafico)
+            self.imagen_pintada = create_overlay(self.colores, grafico)
             grafico = self.imagen_pintada.copy()
 
             imagenes.append(grafico)

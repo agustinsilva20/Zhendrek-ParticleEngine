@@ -91,13 +91,42 @@
     },
     {
         "id":11,
-        "nombre": "Bola Electricidad",
+        "nombre": "Bola Flami",
         "file":9,
         "x":0,
         "y":131,
         "width":60,
         "height":60
+    },
+    {
+        "id":12,
+        "nombre": "Bola de Curacion druida",
+        "file":1,
+        "x":287,
+        "y":352,
+        "width":98,
+        "height":98
+    },
+    {
+        "id":13,
+        "nombre": "Orbe",
+        "file":1,
+        "x":34,
+        "y":99,
+        "width":30,
+        "height":30
+    },
+    {
+        "id":14,
+        "nombre": "Cruz revivir",
+        "file":1,
+        "x":167,
+        "y":65,
+        "width":18,
+        "height":30
     }
+
+
 
 
 

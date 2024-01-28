@@ -13,7 +13,7 @@ class OneParticle(pygame.sprite.Sprite):
                  repeat:bool,
                  particula_padre,
                  screen):
-        
+        self.opacidad = 160
         # Configuracion inicial pygame
         super().__init__()
         self._layer = 101
@@ -93,6 +93,7 @@ class OneParticle(pygame.sprite.Sprite):
         # Configuro la direccion inicial de la particula
         self.vector_x = random.randint(self.vx1, self.vx2)
         self.vector_y = random.randint(self.vy1, self.vy2)
+        
 
         # Seteo angulo de rotacion
         self.angulo = 0
@@ -105,6 +106,7 @@ class OneParticle(pygame.sprite.Sprite):
         rand_img = random.randint(0,len(self.imagenes)-1)
         self.image = self.imagenes[rand_img]
        
+        
 
         # Configuracion para el giro
         self.imagen_pintada = self.image.copy()
@@ -114,6 +116,7 @@ class OneParticle(pygame.sprite.Sprite):
         self.rect.x = self.particula_padre.rect.x + self.x
         self.rect.y = self.particula_padre.rect.y + self.y
 
+        self.image.set_alpha(self.opacidad)
         # Aplico el giro
         if self.isSpinning:
             random_angle = random.randint(self.spin1, self.spin2)
@@ -141,7 +144,7 @@ class OneParticle(pygame.sprite.Sprite):
 
         # Reboto en caso de llegar al suelo
         if self.y == 0:
-            self.vector_y = - self.rebote
+            self.vector_y -= self.rebote
         
         # Aplico movimiento
         if self.isMoving_x:
@@ -156,6 +159,7 @@ class OneParticle(pygame.sprite.Sprite):
         self.x = self.x + (self.vector_x/self.friccion)
         self.y = self.y + (self.vector_y/self.friccion)
 
+
         # Descuento el tiempo de vida
         self.duracion = self.duracion - delta
 
@@ -165,6 +169,8 @@ class OneParticle(pygame.sprite.Sprite):
         # Actualizo la posicion
         self.rect.x = self.particula_padre.rect.x + self.x
         self.rect.y = self.particula_padre.rect.y + self.y
+
+    
 
         # Aplico el giro
         if self.isSpinning:
@@ -192,6 +198,9 @@ class OneParticle(pygame.sprite.Sprite):
         offset_rotated = self.offset.rotate(self.angulo) #new
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
         self.image.set_colorkey((0, 0, 0))
+
+        self.image.set_alpha(self.opacidad)
+        self.image.set_alpha(self.opacidad)
 
 
         

@@ -1,7 +1,6 @@
 import pygame
 from OneParticle import OneParticle
 
-from Colors import create_overlay
 class Particle(pygame.sprite.Sprite):
     """def __init__(self,cantidad, x1:int, x2:int, y1:int, y2:int,
                  vx1:int, vx2:int, vy1:int, vy2:int,
@@ -36,7 +35,7 @@ class Particle(pygame.sprite.Sprite):
             grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]
             #self.imagen_pintada = self.set_color(grafico)
-            self.imagen_pintada = create_overlay(self.colores, grafico)
+            self.imagen_pintada = self.set_color(self.colores, grafico)
             grafico = self.imagen_pintada.copy()
 
             imagenes.append(grafico)
@@ -103,17 +102,15 @@ class Particle(pygame.sprite.Sprite):
         for elem in self.particulas:
             elem.draw()
     
+    def set_color(self,colors, imagen):
+        size = imagen.get_size()
+        root = int(len(colors) ** 0.5)
+        overlay = pygame.Surface((root, root), pygame.SRCALPHA)
+        for y in range(root):
+            for x in range(root):
+                overlay.set_at((x, y), colors[x + y * root])
 
-    def set_color_one(self, imagen):
-        """
-            USA UN SOLO COLOR
-        """
-        color = pygame.Color(255, 124, 0)
-
-        #Creo una superficie para la imagen coloreada
-        colored_image = pygame.Surface(imagen.get_size())
-
-        colored_image.fill(color)
+        colored_image = pygame.transform.smoothscale(overlay, size)
 
         # Hago una copia de la imagen origina
         final_image = imagen.copy()
@@ -122,35 +119,7 @@ class Particle(pygame.sprite.Sprite):
         final_image.blit(colored_image, (0, 0), special_flags = pygame.BLEND_MULT)
 
         return final_image
-
-
     
-    def set_color(self, imagen):
-        """
-            USA 4 COLORES
-        """
-        # Crear una nueva superficie para la imagen con el mismo tamaño
-        imagen_pintada = pygame.Surface(imagen.get_size(), pygame.SRCALPHA)
-
-        # Calculo los cuadrantes
-        self.width = imagen.get_width()
-        self.height = imagen.get_height()
-        rect1 = pygame.Rect(0, 0, self.width // 2, self.height // 2)
-        rect2 = pygame.Rect(self.width // 2, 0, self.width // 2, self.height // 2)
-        rect3 = pygame.Rect(0, self.height // 2, self.width // 2, self.height // 2)
-        rect4 = pygame.Rect(self.width // 2, self.height // 2, self.width // 2, self.height // 2)
-
-        # Pinto por cuadrantes con blending estándar
-        imagen_pintada.blit(imagen, (0, 0))  # Copiar la imagen original
-        imagen_pintada.fill(self.colores[0], rect=rect1, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(self.colores[1], rect=rect2, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(self.colores[2], rect=rect3, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.fill(self.colores[3], rect=rect4, special_flags=pygame.BLEND_RGBA_MULT)
-        imagen_pintada.set_colorkey((self.colores[0]))
-        imagen_pintada.set_colorkey((self.colores[1]))
-        imagen_pintada.set_colorkey((self.colores[2]))
-        imagen_pintada.set_colorkey((self.colores[3]))
-        return imagen_pintada
 
 
 

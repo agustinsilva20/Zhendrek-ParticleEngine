@@ -37,11 +37,16 @@ class Player:
 
 player = Player()
 
+
 # Función para el bucle de particulas
 def bucle_pygame(player):
     clock = pygame.time.Clock()
-
+    
     player = player
+
+    thread_tkinter = Thread(target=bucle_tkinter, args=(diccionario, player,) )
+    thread_tkinter.start()
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -59,7 +64,9 @@ def bucle_pygame(player):
                 # Dibujo
                 player.particle.draw()
             except Exception as e:
-                print(f"Error: {e}")
+                pass
+            
+
 
         # Actualizar la pantalla
         pygame.display.flip()
@@ -70,14 +77,8 @@ def bucle_pygame(player):
 
 
 
+bucle_pygame(player)
 
-# Iniciar los hilos
-thread_pygame = Thread(target=bucle_pygame, args=(player,))
-thread_tkinter = Thread(target=bucle_tkinter, args=(diccionario, player,) )
+#
 
-thread_pygame.start()
-thread_tkinter.start()
 
-# Esperar a que ambos hilos finalicen (en este caso, nunca)
-thread_pygame.join()
-thread_tkinter.join()

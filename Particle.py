@@ -30,7 +30,6 @@ class Particle(pygame.sprite.Sprite):
 
         imagenes = []
         for elem in dto["particles"]:
-            print(elem)
             grafico = elem.copy()
             grafico.set_colorkey((0,0,0))
             self.colores = [dto["color1"], dto["color2"], dto["color3"], dto["color4"]]

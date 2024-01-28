@@ -340,7 +340,39 @@
         "color2" :[255, 255, 255],
         "color3": [255, 255, 255],
         "color4" : [0, 0, 255]
+    },
+    {
+        "id":9,
+        "imagenes" : [15],
+        "nombre": "TP Azul",
+        "cantidad" :53,
+        "x1" : 3,
+        "x2" : 20,
+        "y1" : 0,
+        "y2" : 0,
+        "vx1" : -45,
+        "vx2" : -45,
+        "vy1" : 0,
+        "vy2" : 0,
+        "life1" : -1,
+        "life2" : 900,
+        "friccion" : 8,
+        "gravedad" :0,
+        "rebote" : 0,
+        "move_x1" : -5,
+        "move_x2" : 5,
+        "move_y1" : -5,
+        "move_y2" : -5,
+        "spin1" : 0,
+        "spin2" : 0,
+        "velocidad": 40,
+        "repeat" : true,
+        "color1" : [255, 255, 255],
+        "color2" :[0, 0, 255],
+        "color3": [0, 0, 255],
+        "color4" : [0, 0, 255]
     }
+
 
 
 

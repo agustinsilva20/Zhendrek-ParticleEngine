@@ -58,12 +58,14 @@ class Particle(pygame.sprite.Sprite):
             self.particulas.append(nueva_particula)
         
         # Duraicon de las particulas
-        self.duracion = max(int(dto["life1"]), int(dto["life2"]))
-
-        if self.duracion <=-1:
+        if int(dto["life1"]) == -1:
             self.infinito = True
+            
         else:
             self.infinito = False
+
+        self.duracion = max(int(dto["life1"]), int(dto["life2"]))
+        
 
         self.last_tick = pygame.time.get_ticks()
     
@@ -78,7 +80,7 @@ class Particle(pygame.sprite.Sprite):
             delta = time - self.last_tick
             self.last_tick = time
             self.duracion -= delta
-            if self.duracion <=0:
+            if self.duracion <=0 and not self.infinito:
                 self.kill()
 
     

@@ -38,8 +38,6 @@ class OneParticle(pygame.sprite.Sprite):
         self.vx2 = vx2
         self.vy1 = vy1
         self.vy2 = vy2
-        #self.vector_x = random.randint(vx1, vx2)
-        #self.vector_y = random.randint(vy1, vy2)
 
         # Agrego unidades de desplazamiento de la particula
         
@@ -80,8 +78,15 @@ class OneParticle(pygame.sprite.Sprite):
         # Calculo la posicion inicial tomando un numero aleatorio entre los limites
         self.x = random.randint(self.x1, self.x2)
         self.y = random.randint(self.y1, self.y2)
-
         # Calculo la duracion de la particula
+        if self.life1 == -1:
+            self.infinito = True
+            self.duracion = random.randint(int(self.life2/2), self.life2)
+        else:
+            self.duracion = random.randint(self.life1, self.life2)
+            self.infinito = False
+        
+        """# Calculo la duracion de la particula
         self.duracion = random.randint(self.life1, self.life2)
         if self.duracion <=-1:
             self.infinito = True
@@ -89,7 +94,8 @@ class OneParticle(pygame.sprite.Sprite):
         else:
             
             self.infinito = False
-
+        """
+    
         # Configuro la direccion inicial de la particula
         self.vector_x = random.randint(self.vx1, self.vx2)
         self.vector_y = random.randint(self.vy1, self.vy2)
@@ -183,13 +189,12 @@ class OneParticle(pygame.sprite.Sprite):
 
         # Analizo que hacer con la particula
         if self.duracion <= 0:
-                # ARREGLAR SI UN PARAM ES -1 ENTONCES EN INFINITA, EL SEGUNDO PARAM INDICA LA DURACION DE LA PARTICULA
                 if self.repeat or self.infinito:
                     # Reinicio la particula
                     self.start_loop()
                 else:
-    
                     self.kill()
+
             
     
 

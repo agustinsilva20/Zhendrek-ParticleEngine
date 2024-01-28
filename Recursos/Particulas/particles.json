@@ -137,8 +137,8 @@
         "vx2" : 0,
         "vy1" : 0,
         "vy2" : 0,
-        "life1" : -1,
-        "life2" : -1,
+        "life1" : 70000,
+        "life2" : 70000,
         "friccion" : 1,
         "gravedad" :0,
         "rebote" : 0,
@@ -168,8 +168,8 @@
         "vx2" : 0,
         "vy1" : 0,
         "vy2" : 0,
-        "life1" : -1,
-        "life2" : -1,
+        "life1" : 70000,
+        "life2" : 70000,
         "friccion" : 1,
         "gravedad" :0,
         "rebote" : 0,
@@ -190,7 +190,7 @@
         "id":7,
         "imagenes" : [10,11],
         "nombre": "Desca Flami 84",
-        "cantidad" :1,
+        "cantidad" :20,
         "x1" : -15,
         "x2" : 15,
         "y1" : 15,
@@ -200,7 +200,7 @@
         "vy1" : 0,
         "vy2" : 0,
         "life1" : -1,
-        "life2" : -1,
+        "life2" : 700,
         "friccion" : 6,
         "gravedad" :0,
         "rebote" : 0,
@@ -218,7 +218,7 @@
         "color4" : [90, 41, 0]
     },
     {
-        "id":7,
+        "id":8,
         "imagenes" : [12],
         "nombre": "Curacion Druida 17",
         "cantidad" :1,
@@ -249,7 +249,7 @@
         "color4" : [240, 180, 0]
     },
     {
-        "id":7,
+        "id":9,
         "imagenes" : [13],
         "nombre": "Dopa paladin 19",
         "cantidad" :60,
@@ -280,7 +280,7 @@
         "color4" : [104, 112, 255]
     },
     {
-        "id":8,
+        "id":10,
         "imagenes" : [14],
         "nombre": "Revivir efecto 22",
         "cantidad" :8,
@@ -311,7 +311,7 @@
         "color4" : [255, 255, 0]
     },
     {
-        "id":9,
+        "id":11,
         "imagenes" : [10],
         "nombre": "Castigo Divino 25",
         "cantidad" :7,
@@ -342,7 +342,7 @@
         "color4" : [0, 0, 255]
     },
     {
-        "id":9,
+        "id":12,
         "imagenes" : [15],
         "nombre": "TP Azul",
         "cantidad" :53,
@@ -373,7 +373,7 @@
         "color4" : [0, 0, 255]
     },
     {
-        "id":10,
+        "id":13,
         "imagenes" : [16,17,18],
         "nombre": "Meditacion 36",
         "cantidad" :110,

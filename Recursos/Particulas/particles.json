@@ -371,7 +371,39 @@
         "color2" :[0, 0, 255],
         "color3": [0, 0, 255],
         "color4" : [0, 0, 255]
+    },
+    {
+        "id":10,
+        "imagenes" : [16,17,18],
+        "nombre": "Meditacion 36",
+        "cantidad" :110,
+        "x1" : -50,
+        "x2" : 50,
+        "y1" : -1,
+        "y2" : 1,
+        "vx1" : 0,
+        "vx2" : 0,
+        "vy1" : 60,
+        "vy2" : 60,
+        "life1" : -1,
+        "life2" : 800,
+        "friccion" : 4,
+        "gravedad" :0,
+        "rebote" : 0,
+        "move_x1" : 0,
+        "move_x2" : 0,
+        "move_y1" : -20,
+        "move_y2" : -5,
+        "spin1" : 0,
+        "spin2" : 0,
+        "velocidad": 40,
+        "repeat" : true,
+        "color1" : [255, 255, 255],
+        "color2" :[157, 74, 243],
+        "color3": [255, 255, 255],
+        "color4" : [255, 255, 255]
     }
+
 
 
 

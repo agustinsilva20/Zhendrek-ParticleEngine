@@ -30,6 +30,8 @@ dto = diccionario[7]
 class Player:
     def __init__(self) -> None:
         self.particle = None
+        self.x = 200
+        self.y = 200
     
     def crear_particula(self, objeto):
         self.particle = None
@@ -37,8 +39,6 @@ class Player:
 
 player = Player()
 
-
-# Función para el bucle de particulas
 def bucle_pygame(player):
     clock = pygame.time.Clock()
     
@@ -54,24 +54,19 @@ def bucle_pygame(player):
                 sys.exit()
 
         # Limpiar la pantalla
-        screen.fill(WHITE)
+        screen.fill(BLACK)
 
         if player.particle:
             try:
-                # Actualizar la partícula
+
                 player.particle.update()
 
-                # Dibujo
                 player.particle.draw()
             except Exception as e:
                 pass
-            
 
-
-        # Actualizar la pantalla
         pygame.display.flip()
 
-        # Controlar la velocidad de fotogramas
         clock.tick(250)
 
 

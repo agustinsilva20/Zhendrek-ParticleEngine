@@ -133,7 +133,37 @@
         "y":33,
         "width":30,
         "height":30
+    },
+    {
+        "id":16,
+        "nombre": "ojos",
+        "file":1,
+        "x":354,
+        "y":33,
+        "width":30,
+        "height":20
+    },
+    {
+        "id":17,
+        "nombre": "destello",
+        "file":1,
+        "x":35,
+        "y":37,
+        "width":25,
+        "height":25
+    },
+    {
+        "id":18,
+        "nombre": "Estrellita",
+        "file":1,
+        "x":361,
+        "y":8,
+        "width":18,
+        "height":18
     }
+   
+
+
 
 
 

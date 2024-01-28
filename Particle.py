@@ -70,8 +70,8 @@ class Particle(pygame.sprite.Sprite):
         self.last_tick = pygame.time.get_ticks()
     
     def update(self):
-        self.rect.x = 100
-        self.rect.y = 100
+        self.rect.x = self.player.x
+        self.rect.y = self.player.y
         for elem in self.particulas:
             elem.update()
         

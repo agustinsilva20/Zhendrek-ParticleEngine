@@ -160,7 +160,81 @@
         "y":8,
         "width":18,
         "height":18
+    },
+    {
+        "id":19,
+        "nombre": "Estrellas",
+        "file":5,
+        "x":392,
+        "y":261,
+        "width":115,
+        "height":120
+    },
+    {
+        "id":20,
+        "nombre": "Brillo nudillos",
+        "file":8,
+        "x":238,
+        "y":145,
+        "width":98,
+        "height":91
+    },
+    {
+        "id":21,
+        "nombre": "Brillo bacu nigro",
+        "file":5,
+        "x":392,
+        "y":10,
+        "width":115,
+        "height":120
+    },
+    {
+        "id":22,
+        "nombre": "Brillo",
+        "file":5,
+        "x":267,
+        "y":261,
+        "width":115,
+        "height":120
+    },
+    {
+        "id":23,
+        "nombre": "Cosa rara",
+        "file":5,
+        "x":0,
+        "y":261,
+        "width":129,
+        "height":121
+    },
+    {
+        "id":24,
+        "nombre": "Orbe luz",
+        "file":1,
+        "x":64,
+        "y":99,
+        "width":30,
+        "height":30
+    },
+    {
+        "id":25,
+        "nombre": "Brillo curaxion",
+        "file":2,
+        "x":8,
+        "y":5,
+        "width":51,
+        "height":54
+    },
+    {
+        "id":26,
+        "nombre": "vacio",
+        "file":5,
+        "x":0,
+        "y":0,
+        "width":1,
+        "height":1
     }
+
+
    
 
 

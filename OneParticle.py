@@ -202,6 +202,8 @@ class OneParticle(pygame.sprite.Sprite):
         self.image = pygame.transform.rotozoom(self.imagen_pintada, -self.angulo, 1)
         offset_rotated = self.offset.rotate(self.angulo) #new
         self.rect = self.image.get_rect(center=self.particula_padre.rect.center+offset_rotated)
+        self.rect.x = self.rect.x + self.x
+        self.rect.y = self.rect.y + self.y
         self.image.set_colorkey((0, 0, 0))
 
         self.image.set_alpha(self.opacidad)
